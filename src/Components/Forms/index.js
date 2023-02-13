@@ -1,3 +1,4 @@
+import { dividerClasses } from "@mui/material";
 import React, {useEffect} from "react";
 import {v4 as uuidv4} from "uuid";
 
@@ -5,7 +6,7 @@ import {v4 as uuidv4} from "uuid";
 const Form = ({input, setInput, todos, setTodos, editTodo, setEditTodo}) => {
 
     //localstorage parsing to turn string into JS object
-const initialState = JSON.parse(localStorage.getItem("todos")) || [];
+    const initialState = JSON.parse(localStorage.getItem("todos")) || [];
 
 
      //Update function
@@ -19,7 +20,6 @@ const initialState = JSON.parse(localStorage.getItem("todos")) || [];
         setEditTodo("");
     
     }
-
 
     //For realtime update and for info to appear on the input
     useEffect(() => {
@@ -36,18 +36,6 @@ const initialState = JSON.parse(localStorage.getItem("todos")) || [];
 
             setInput(event.target.value);
     };
-
-    //function for Editing Task
-    const handleExisting = ({title}) => {
-
-        const existing = todos.find((todo) => todo.title === title);
-
-        if(input === existing){
-            alert(`Please Input a different value`);
-
-            return false;
-        }
-    }
 
 
     //Function for Adding Input
@@ -89,22 +77,22 @@ const initialState = JSON.parse(localStorage.getItem("todos")) || [];
 
 
     return ( 
+        <div className="inputContainer">
+            <form onSubmit={onFormSubmit}>
+                <input type="text" 
+                    placeholder="Enter a Todo. .." 
+                    className="task-input"
+                    value={input}
+                    onChange = {onInputChange}
+                />
 
-        <form onSubmit={onFormSubmit}>
-            <input type="text" 
-                placeholder="Enter a Todo. .." 
-                className="task-input"
-                value={input}
-                onChange = {onInputChange}
-            />
 
+                <button className="button-add" type="submit">
+                    {editTodo ? "Save?" : "Add"}
+                </button>
 
-            <button className="button-add" type="submit">
-                   {editTodo ? "Save?" : "Add"}
-            </button>
-
-        </form>
-
+            </form>
+       </div>
      );
 }
  

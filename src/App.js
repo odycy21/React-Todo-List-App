@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from "react";
-import Header from "./components/Header";
-import Form from "./components/Form";
-import TodosList from "./components/TodosList";
-import DoneItems from "./components/DoneItems";
+import Header from "./Components/Header/";
+import Form from "./Components/Forms/";
+import TodosList from "./Components/TodosList/";
+import Footer from "./Components/Footer";
 import './App.css';
-
 
 const App = () => {
 
@@ -22,36 +21,33 @@ useEffect(() => {
 }, [todos]);
   
   return ( 
+  
     <div className="container">
-    <div className='app-wrapper'>
-        <div>
-            <Header />
-        </div>
-        <div>
-            <Form 
-              input = {input}
-              setInput = {setInput}
-              todos = {todos}
-              setTodos = {setTodos}
-              editTodo = {editTodo}
-              setEditTodo = {setEditTodo}
-            />
-          </div>
-
+      <div className='app-wrapper'>
+       <Header />
           <div>
-            <TodosList 
-              todos = {todos} 
-              setTodos = {setTodos}
-              setEditTodo = {setEditTodo}
-            />
-
-            <DoneItems 
-            todos = {todos}
-            setTodos = {setTodos}
-            setEditTodo = {setEditTodo}
-            />
-          </div>
-    </div>
+              <TodosList 
+                todos = {todos} 
+                setTodos = {setTodos}
+                setEditTodo = {setEditTodo}
+              />
+            </div>
+      
+          <div>
+              <Form 
+                input = {input}
+                setInput = {setInput}
+                todos = {todos}
+                setTodos = {setTodos}
+                editTodo = {editTodo}
+                setEditTodo = {setEditTodo}
+              />
+            </div>
+            <div>
+              <Footer />
+            </div>
+     
+      </div>
   </div>
    );
   }
